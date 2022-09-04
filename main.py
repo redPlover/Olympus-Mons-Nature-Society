@@ -1,8 +1,10 @@
 import pygame
 import os
+import player_handler
 
 # Constants
 WIDTH, HEIGHT = 900, 600
+PLAYER_WIDTH, PLAYER_HEIGHT = 100, 70
 
 #Colors
 WHITE = (255, 255, 255)
@@ -23,6 +25,16 @@ pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Test Game")
 
+class Player(pygame.Rect):
+    def __init__(self):
+        super().__init__(self, 0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
+        self.x = WIDTH // 2 - self.width // 2
+        self.y = HEIGHT // 2 - self.height // 2
+
+def draw_window(player):
+    window.fill(BACKGROUND)
+    pygame.draw.rect(window, GREEN, player)
+
 def main():
     run = True
     while run:
@@ -36,15 +48,17 @@ def main():
                     pygame.quit()
                     return
                 if event.key == pygame.K_w:
-                    player.y += 1
+                    player_handler.y += 1
                 if event.key == pygame.K_a:
-                    player.x -= 1
+                    player_handler.x -= 1
                 if event.key == pygame.K_s:
-                    player.y -= 1
+                    player_handler.y -= 1
                 if event.key == pygame.K_d:
-                    player.x += 1
+                    player_handler.x += 1
+        
+        player = Player()
+        draw_window(player)
 
-        window.fill(BACKGROUND)
         pygame.display.flip()
         clock.tick(FPS)
 
