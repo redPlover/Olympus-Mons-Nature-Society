@@ -55,6 +55,8 @@ def main():
                     player_handler.y -= 1
                 if event.key == pygame.K_d:
                     player_handler.x += 1
+                if event.key == pygame.K_e:
+                    player_handler.interact()
         
         player = Player()
         draw_window(player)

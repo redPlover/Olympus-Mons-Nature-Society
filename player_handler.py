@@ -11,3 +11,6 @@ class PlayerHandler:
     
     def move_player():
         pass
+    
+    def interact():
+        print("interaction")
